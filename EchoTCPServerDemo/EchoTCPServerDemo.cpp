@@ -112,8 +112,11 @@ int main(void)
 
 		if (!getpeername(ClientSocket, (struct sockaddr *)&sa, &len))
 		{
-			printf("\n---------------------------------\n客户端IP地址：%s \n", inet_ntoa(sa.sin_addr));
-			printf("客户端端口地址：%d \n\n", ntohs(sa.sin_port));
+			cout << endl << "                                               *----------------------*" << endl;
+			cout << "                                               |  成功连接客户端      |" << endl;
+			cout << "                                               |  IP地址  ：" << inet_ntoa(sa.sin_addr) << " |" << endl;
+			cout << "                                               |  端口地址：" << ntohs(sa.sin_port) << "     |" << endl;
+			cout << "                                               *----------------------*" << endl;
 		}
 
 		if (ClientSocket == INVALID_SOCKET)
@@ -127,7 +130,6 @@ int main(void)
 			closesocket(ClientSocket);
 			continue;
 		}
-		cout << "---------------------------------\n客户端连接成功\n";
 		
 
 		if (ClientSocket == INVALID_SOCKET)
@@ -146,9 +148,6 @@ int main(void)
 
 		//getchar();
 	}
-
-
-
 	// cleanup 
 	//closesocket(ClientSocket);
 	WSACleanup();
@@ -180,7 +179,11 @@ DWORD WINAPI AnewThread(LPVOID lParam)
 		if (iResult > 0)
 		{
 			if (buf[0] == '#')break;
-			if (buf[0] == '\\'|| buf[0] == ':')continue;
+			if (buf[0] == '\\')
+			{
+				namelen = 0;
+				continue;
+			}
 			filename[namelen++] = buf[0];
 		} 
 	}
