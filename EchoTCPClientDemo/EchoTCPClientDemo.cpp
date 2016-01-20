@@ -83,8 +83,11 @@ int main(int argc, char **argv)
 		int len = sizeof(sa);
 		if (!getsockname(ConnectSocket, (struct sockaddr *)&sa, &len))
 		{
-			printf("客户端IP地址：%s \n", inet_ntoa(sa.sin_addr));
-			printf("客户端端口地址：%d \n\n", ntohs(sa.sin_port));
+			cout << "                                               *----------------------*" << endl;
+			cout << "                                               |  成功开启客户端      |" << endl;
+			cout << "                                               |  IP地址  ：" << inet_ntoa(sa.sin_addr) <<" |"<< endl;
+			cout << "                                               |  端口地址："<<ntohs(sa.sin_port)<<"     |"<<endl;
+			cout << "                                               *----------------------*" << endl;
 		}
 		if (iResult == SOCKET_ERROR) {
 			closesocket(ConnectSocket);
@@ -109,7 +112,7 @@ int main(int argc, char **argv)
 		{
 			memset(filename, 0, strlen(filename));
 			memset(buf, 0, strlen(buf));
-			printf("输入文件名：  ");
+			printf("输入文件名(以#结尾)：  ");
 			cin >> filename;
 			iResult = send(ConnectSocket, filename, strlen(filename), 0);//发送文件名
 			filename[strlen(filename) - 1] = '\0';
