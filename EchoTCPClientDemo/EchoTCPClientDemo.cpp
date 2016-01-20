@@ -112,7 +112,7 @@ int main(int argc, char **argv)
 		{
 			memset(filename, 0, strlen(filename));
 			memset(buf, 0, strlen(buf));
-			printf("输入文件名(以#结尾)：  ");
+			printf("输入文件名or支持直接拖拽文件来发送文件(以#结尾)：  ");
 			cin >> filename;
 			iResult = send(ConnectSocket, filename, strlen(filename), 0);//发送文件名
 			filename[strlen(filename) - 1] = '\0';
